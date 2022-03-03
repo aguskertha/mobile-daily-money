@@ -24,6 +24,7 @@ public class TokenManager {
     public void saveToken(LoginResponse loginResponse){
         editor.putString("TOKEN", loginResponse.getToken()).commit();
         editor.putString("REFRESH_TOKEN", loginResponse.getRefreshToken()).commit();
+        editor.putString("USER_ID", loginResponse.getUserID()).commit();
         editor.apply();
     }
 
@@ -34,6 +35,7 @@ public class TokenManager {
     public void deleteToken(){
         editor.remove("TOKEN").commit();
         editor.remove("REFRESH_TOKEN").commit();
+        editor.remove("USER_ID").commit();
         editor.apply();
     }
 
@@ -43,6 +45,9 @@ public class TokenManager {
 
     public String getRefreshToken(){
         return prefs.getString("REFRESH_TOKEN",null);
+    }
+    public String getUserID(){
+        return prefs.getString("USER_ID",null);
     }
 
 }

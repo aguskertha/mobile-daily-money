@@ -34,9 +34,12 @@ public class UserRepository {
                             tokenManager.saveToken(response.body());
                             loginListener.onLogin(response.body());
                         }
-                        if(response.code() == 400){
+                        else if(response.code() == 400){
                             APIMessage message = new Gson().fromJson(response.errorBody().charStream(), APIMessage.class);
                             Toast.makeText(context, message.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(context, "Something Wrong!", Toast.LENGTH_SHORT).show();
                         }
                     }
                     catch (Exception err){
@@ -66,9 +69,12 @@ public class UserRepository {
                         APIMessage message = response.body();
                         registerListener.onRegister(message);
                     }
-                    if(response.code() == 400){
+                    else if(response.code() == 400){
                         APIMessage message = new Gson().fromJson(response.errorBody().charStream(), APIMessage.class);
                         Toast.makeText(context, message.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(context, "Something Wrong!", Toast.LENGTH_SHORT).show();
                     }
                 }
 

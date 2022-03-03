@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.mobile_daily_money.MoneyRecord.Activity.DashboardMoneyRecordActivity;
 import com.example.mobile_daily_money.User.Listener.LoginListener;
 import com.example.mobile_daily_money.User.Model.Response.LoginResponse;
 import com.example.mobile_daily_money.User.ViewModel.UserViewModel;
@@ -49,6 +50,8 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 
     @Override
     public void onLogin(LoginResponse loginResponse) {
-        Toast.makeText(view.getContext(), loginResponse.getUserID(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, DashboardMoneyRecordActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

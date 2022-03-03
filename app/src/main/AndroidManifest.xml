@@ -12,13 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobiledailymoney">
         <activity
+            android:name=".User.Activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MoneyRecord.Activity.DashboardMoneyRecordActivity"
+            android:exported="false" />
+        <activity
             android:name=".User.Activity.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".User.Activity.LoginActivity"
+            android:name=".SplashScreen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
