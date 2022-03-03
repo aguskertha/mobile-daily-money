@@ -17,6 +17,7 @@ import com.example.mobile_daily_money.MoneyRecord.Listener.CreateMoneyRecordList
 import com.example.mobile_daily_money.MoneyRecord.Model.Request.MoneyRecordRequest;
 import com.example.mobile_daily_money.MoneyRecord.ViewModel.MoneyRecordViewModel;
 import com.example.mobile_daily_money.R;
+import com.example.mobile_daily_money.Utils.FlagStorage;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class CreateMoneyRecordBottomSheet extends BottomSheetDialogFragment implements TokenListener {
@@ -54,17 +55,22 @@ public class CreateMoneyRecordBottomSheet extends BottomSheetDialogFragment impl
         btnRecordCreateSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GenerateToken.getToken(view.getContext(), CreateMoneyRecordBottomSheet.this::onToken);
+                GenerateToken.getToken(view.getContext(), CreateMoneyRecordBottomSheet.this::onToken, FlagStorage.TOKEN_CREATE_RECORD);
             }
         });
     }
 
     @Override
-    public void onToken(TokenResponse tokenResponse) {
-        int amount = Integer.parseInt(edtRecordCreateAmount.getText().toString().trim());
-        String description = edtRecordCreateDescription.getText().toString().trim();
-        MoneyRecordRequest moneyRecordRequest = new MoneyRecordRequest(amount, description);
-        MoneyRecordViewModel.createMoneyRecord(view.getContext(), moneyRecordRequest, createMoneyRecordListener, tokenResponse);
-        dismiss();
+    public void onToken(int flag, TokenResponse tokenResponse) {
+
+        switch (flag){
+            case FlagStorage.TOKEN_CREATE_RECORD:
+                int amount = Integer.parseInt(edtRecordCreateAmount.getText().toString().trim());
+                String description = edtRecordCreateDescription.getText().toString().trim();
+                MoneyRecordRequest moneyRecordRequest = new MoneyRecordRequest(amount, description);
+                MoneyRecordViewModel.createMoneyRecord(view.getContext(), moneyRecordRequest, createMoneyRecordListener, tokenResponse);
+                dismiss();
+                break;
+        }
     }
 }

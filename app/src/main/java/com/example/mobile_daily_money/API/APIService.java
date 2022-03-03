@@ -10,6 +10,7 @@ import com.example.mobile_daily_money.User.Model.Response.LoginResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -26,6 +27,8 @@ public interface APIService {
     @POST("user/token")
     Call<TokenResponse> getToken(@Body TokenRequest tokenRequest);
 
+    @DELETE("user/logout")
+    Call<APIMessage> logout(@Header("Authorization") String auth);
 
     //MONEY RECORD API
     @GET("money-record")
