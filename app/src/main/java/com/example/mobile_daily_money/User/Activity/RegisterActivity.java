@@ -2,11 +2,13 @@ package com.example.mobile_daily_money.User.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.mobile_daily_money.API.APIMessage;
+import com.example.mobile_daily_money.MoneyRecord.Activity.DashboardMoneyRecordActivity;
 import com.example.mobile_daily_money.R;
 import com.example.mobile_daily_money.User.Listener.LoginListener;
 import com.example.mobile_daily_money.User.Listener.RegisterListener;
@@ -43,6 +45,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
 
     @Override
     public void onLogin(LoginResponse loginResponse) {
-        Toast.makeText(view.getContext(), loginResponse.getUserID(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, DashboardMoneyRecordActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
