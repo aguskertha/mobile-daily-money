@@ -11,7 +11,7 @@ import retrofit2.Response;
 
 public class GenerateToken {
 
-    public static final void getToken(Context context, TokenListener tokenListener){
+    public static final void getToken(Context context, TokenListener tokenListener, int flag){
         try {
             TokenManager tokenManager = TokenManager.getInstance(context.getSharedPreferences("Token",0));
             TokenRequest tokenRequest = new TokenRequest(tokenManager.getRefreshToken(), tokenManager.getUserID());
@@ -21,7 +21,7 @@ public class GenerateToken {
                 public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
                     if(response.isSuccessful()){
                         TokenResponse tokenResponse = response.body();
-                        tokenListener.onToken(tokenResponse);
+                        tokenListener.onToken(flag, tokenResponse);
                     }
                     if (response.code() == 400 ){
 
